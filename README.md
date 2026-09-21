@@ -103,7 +103,7 @@ Você pode disponibilizar este tutorial online para seus alunos em poucos segund
 
 1. Faça o push deste repositório para o seu GitHub:
    ```bash
-   git remote add origin https://github.com/SEU-USUARIO/NOME-DO-REPOSITORIO.git
+   git remote add origin https://github.com/rcminitor/packet-tracer-wifi.git
    git branch -M main
    git push -u origin main
    ```
@@ -113,7 +113,7 @@ Você pode disponibilizar este tutorial online para seus alunos em poucos segund
    - **Branch:** selecione `main` e a pasta `/ (root)`
    - Clique em **Save**.
 4. Em 1 minuto, sua página estará disponível publicamente no endereço:
-   `https://SEU-USUARIO.github.io/NOME-DO-REPOSITORIO/`
+   `https://rcminitor.github.io/packet-tracer-wifi/`
 
 ---
 
