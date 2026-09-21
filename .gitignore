@@ -1,0 +1,27 @@
+# Ambientes locais e chaves de IA (CRÍTICO: nunca comitar tokens)
+.claude/
+.cursor/
+.mcp.json
+*.bak*
+*.bak
+
+# Scripts locais de configuração de tokens de aula
+limpar-config-omniroute.ps1
+preparar-aula-omniroute.ps1
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/
+.idea/
