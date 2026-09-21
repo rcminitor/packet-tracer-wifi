@@ -4,9 +4,12 @@
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+[![Apostila PDF](https://img.shields.io/badge/Apostila_PDF-Azul_&_Laranja-ea580c?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](apostila_wifi_corporativo.pdf)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
-Tutorial interativo passo a passo para simulação e configuração de uma **Rede Wi-Fi Corporativa** utilizando **Lightweight Access Point (LAP)** gerenciado centralmente por uma **Wireless LAN Controller (WLC)** no **Cisco Packet Tracer**.
+Tutorial interativo passo a passo e **apostila completa em PDF (11 páginas, nas cores azul e laranja)** para simulação e configuração de uma **Rede Wi-Fi Corporativa** utilizando **Lightweight Access Point (LAP)** gerenciado centralmente por uma **Wireless LAN Controller (WLC)** no **Cisco Packet Tracer**.
+
+> 📥 **[Baixar Apostila em PDF (11 páginas)](apostila_wifi_corporativo.pdf)** — Ideal para impressão ou envio direto aos alunos.
 
 ---
 

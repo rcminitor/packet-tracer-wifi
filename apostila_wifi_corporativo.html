@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apostila: Rede Wi-Fi Corporativa — Cisco Packet Tracer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════════════════
+   SISTEMA DE CORES: AZUL (#0284C7 / #0F2744) & LARANJA (#EA580C / #F97316)
+   ══════════════════════════════════════════════════════════════ */
+:root {
+  --blue-dark: #0f2744;
+  --blue-primary: #0284c7;
+  --blue-light: #e0f2fe;
+  --blue-dim: #f0f9ff;
+  --blue-border: #bae6fd;
+  
+  --orange-primary: #ea580c;
+  --orange-vibrant: #f97316;
+  --orange-light: #ffedd5;
+  --orange-dim: #fff7ed;
+  --orange-border: #fed7aa;
+  
+  --text-title: #0f172a;
+  --text-body: #334155;
+  --text-muted: #64748b;
+  
+  --bg-white: #ffffff;
+  --bg-card: #ffffff;
+  --border: #e2e8f0;
+  
+  --font-heading: 'Outfit', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+@page {
+  size: A4 portrait;
+  margin: 1.8cm 1.5cm 1.8cm 1.5cm;
+  @bottom-right {
+    content: "Página " counter(page);
+    font-family: 'Inter', sans-serif;
+    font-size: 8pt;
+    color: #64748b;
+  }
+  @bottom-left {
+    content: "Redes Cuca / IFCE • Wi-Fi Corporativo (LAP + WLC)";
+    font-family: 'Inter', sans-serif;
+    font-size: 8pt;
+    color: #64748b;
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-body);
+  background: var(--bg-white);
+  font-size: 9.5pt;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CAPA DA APOSTILA
+   ══════════════════════════════════════════════════════════════ */
+.cover-page {
+  page-break-after: always;
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 2px solid var(--blue-border);
+  border-radius: 16px;
+  padding: 3rem 2.5rem;
+  background: linear-gradient(145deg, #ffffff 0%, var(--blue-dim) 55%, var(--orange-dim) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.cover-decor-top {
+  height: 8px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--blue-primary) 0%, var(--orange-primary) 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.cover-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--blue-border);
+  padding-bottom: 1.2rem;
+}
+
+.cover-institution {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--blue-dark);
+  letter-spacing: -0.01em;
+}
+
+.cover-badge-top {
+  background: var(--orange-light);
+  color: var(--orange-primary);
+  border: 1px solid var(--orange-border);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cover-body {
+  margin: 3rem 0;
+}
+
+.cover-tagline {
+  display: inline-block;
+  background: var(--blue-primary);
+  color: white;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.35rem 0.9rem;
+  border-radius: 6px;
+  margin-bottom: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.cover-title {
+  font-family: var(--font-heading);
+  font-size: 2.7rem;
+  font-weight: 900;
+  color: var(--blue-dark);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.cover-title .highlight {
+  color: var(--orange-primary);
+}
+
+.cover-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-body);
+  max-width: 90%;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+.cover-pills {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.cover-pill {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-title);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.cover-pill strong {
+  color: var(--blue-primary);
+}
+
+.cover-footer {
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cover-author h4 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--blue-dark);
+}
+
+.cover-author p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.cover-date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ESTRUTURA GERAL DAS PÁGINAS
+   ══════════════════════════════════════════════════════════════ */
+.page-section {
+  margin-bottom: 2.2rem;
+  page-break-inside: avoid;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--blue-dark);
+  border-bottom: 2px solid var(--blue-primary);
+  padding-bottom: 0.4rem;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-badge {
+  font-size: 0.75rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  background: var(--orange-light);
+  color: var(--orange-primary);
+  border: 1px solid var(--orange-border);
+  padding: 0.15rem 0.55rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--blue-dark);
+  margin: 0.9rem 0 0.4rem;
+}
+
+h4 {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--orange-primary);
+  margin: 0.6rem 0 0.25rem;
+}
+
+p {
+  margin-bottom: 0.6rem;
+  color: var(--text-body);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CARDS DE EQUIPAMENTOS (AZUL & LARANJA)
+   ══════════════════════════════════════════════════════════════ */
+.equip-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.equip-card {
+  border: 1px solid var(--blue-border);
+  background: var(--blue-dim);
+  border-radius: 10px;
+  padding: 1rem;
+  position: relative;
+  page-break-inside: avoid;
+}
+
+.equip-card.orange-theme {
+  border-color: var(--orange-border);
+  background: var(--orange-dim);
+}
+
+.equip-card-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--blue-primary);
+  margin-bottom: 0.2rem;
+}
+
+.equip-card.orange-theme .equip-card-tag {
+  color: var(--orange-primary);
+}
+
+.equip-card h4 {
+  font-size: 1.05rem;
+  color: var(--blue-dark);
+  margin: 0 0 0.4rem;
+}
+
+.equip-card.orange-theme h4 {
+  color: var(--orange-primary);
+}
+
+.equip-card p {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TABELAS PROFISSIONAIS
+   ══════════════════════════════════════════════════════════════ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.8pt;
+  margin: 0.8rem 0 1.2rem;
+  page-break-inside: avoid;
+}
+
+th {
+  background: var(--blue-dark);
+  color: white;
+  text-align: left;
+  padding: 0.55rem 0.8rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--blue-dark);
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+  color: var(--text-body);
+}
+
+tr:nth-child(even) td {
+  background: #f8fafc;
+}
+
+tr.highlight-row td {
+  background: var(--orange-light);
+  font-weight: 600;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 8.2pt;
+  background: var(--blue-light);
+  color: var(--blue-dark);
+  padding: 0.12rem 0.35rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   PASSO A PASSO COM FIGURAS
+   ══════════════════════════════════════════════════════════════ */
+.step-box {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.1rem;
+  margin-bottom: 1.4rem;
+  background: white;
+  page-break-inside: avoid;
+}
+
+.step-box-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.7rem;
+}
+
+.step-number {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--orange-primary);
+  color: white;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-box-title {
+  font-family: var(--font-heading);
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: var(--blue-dark);
+}
+
+.step-figure {
+  margin: 0.8rem 0 0.4rem;
+  text-align: center;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.step-figure img {
+  max-width: 95%;
+  max-height: 230px;
+  object-fit: contain;
+  border-radius: 6px;
+  display: block;
+  margin: 0 auto;
+}
+
+.step-figcaption {
+  font-size: 7.8pt;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-top: 0.4rem;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CAIXAS DE ALERTA E DICAS
+   ══════════════════════════════════════════════════════════════ */
+.callout {
+  border-left: 4px solid var(--orange-primary);
+  background: var(--orange-dim);
+  border-radius: 0 8px 8px 0;
+  padding: 0.75rem 1rem;
+  margin: 0.8rem 0;
+  font-size: 8.8pt;
+  page-break-inside: avoid;
+}
+
+.callout.info {
+  border-left-color: var(--blue-primary);
+  background: var(--blue-dim);
+}
+
+.callout-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--orange-primary);
+  margin-bottom: 0.25rem;
+}
+
+.callout.info .callout-title {
+  color: var(--blue-primary);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CHECKLIST DE BANCADA
+   ══════════════════════════════════════════════════════════════ */
+.checklist-table {
+  width: 100%;
+  margin-top: 0.6rem;
+}
+
+.checklist-table td {
+  padding: 0.45rem 0.6rem;
+}
+
+.chk-box {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--orange-primary);
+  border-radius: 3px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   AUTOAVALIAÇÃO / QUIZ
+   ══════════════════════════════════════════════════════════════ */
+.quiz-box {
+  border: 1px solid var(--blue-border);
+  background: #fdfdfe;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.8rem;
+  page-break-inside: avoid;
+}
+
+.quiz-q {
+  font-weight: 700;
+  color: var(--blue-dark);
+  margin-bottom: 0.35rem;
+}
+
+.quiz-answer {
+  font-size: 8.5pt;
+  color: var(--orange-primary);
+  font-weight: 600;
+  margin-top: 0.35rem;
+  background: var(--orange-dim);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+}
+
+/* Utilitários de Quebra de Página */
+.page-break {
+  page-break-before: always;
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CAPA (PÁGINA 1)
+     ══════════════════════════════════════════════════════════════ -->
+<div class="cover-page">
+  <div class="cover-decor-top"></div>
+  
+  <div class="cover-header">
+    <div class="cover-institution">INSTITUTO FEDERAL DE EDUCAÇÃO, CIÊNCIA E TECNOLOGIA (IFCE)</div>
+    <div class="cover-badge-top">Guia de Laboratório</div>
+  </div>
+
+  <div class="cover-body">
+    <span class="cover-tagline">Redes Sem Fio Corporativas • Cisco Packet Tracer</span>
+    <h1 class="cover-title">Arquitetura Wi-Fi com <span class="highlight">LAP & WLC</span></h1>
+    <p class="cover-subtitle">Roteiro prático passo a passo para configuração de pontos de acesso leves (Lightweight AP), gerência centralizada via Wireless Controller e concessão de DHCP.</p>
+    
+    <div class="cover-pills">
+      <div class="cover-pill"><strong>Nível:</strong> Intermediário</div>
+      <div class="cover-pill"><strong>Software:</strong> Cisco Packet Tracer v8.x</div>
+      <div class="cover-pill"><strong>Duração Estimada:</strong> 2 horas-aula</div>
+      <div class="cover-pill"><strong>Topologia:</strong> Switch 2960, WLC, LAP, Server, PCs</div>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <div class="cover-author">
+      <h4>Prof. Romulo Cesar</h4>
+      <p>Área de Redes de Computadores e Telecomunicações • Redes Cuca / IFCE</p>
+    </div>
+    <div class="cover-date">
+      Edição Laboratório 2026
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SEÇÃO 1: FUNDAMENTOS E EQUIPAMENTOS (PÁGINA 2)
+     ══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+
+<div class="page-section">
+  <div class="section-title">
+    <span>1. Fundamentos da Arquitetura Wi-Fi Corporativa</span>
+    <span class="section-badge">Teoria</span>
+  </div>
+
+  <p>Em ambientes domésticos, utilizamos <strong>Access Points autônomos</strong> que armazenam individualmente o nome da rede (SSID), a senha e os canais de frequência. Em redes empresariais (hospitais, universidades, aeroportos), com dezenas ou centenas de APs, essa abordagem torna-se impraticável.</p>
+
+  <p>Adota-se então a arquitetura <strong>Split-MAC</strong> (gerência centralizada), onde o processamento de controle é dividido entre dois componentes essenciais:</p>
+
+  <div class="equip-grid">
+    <div class="equip-card">
+      <div class="equip-card-tag">Equipamento Central</div>
+      <h4>WLC (Wireless LAN Controller)</h4>
+      <p>É o <strong>cérebro</strong> da rede sem fio. Concentra todas as configurações de SSIDs, parâmetros de criptografia (WPA2-PSK), VLANs e políticas de segurança. Permite alterar a senha de centenas de APs com um único clique.</p>
+    </div>
+
+    <div class="equip-card orange-theme">
+      <div class="equip-card-tag">Ponto de Acesso</div>
+      <h4>LAP (Lightweight Access Point)</h4>
+      <p>É a <strong>antena transmissora</strong>. Um AP "leve" que <strong>não funciona sozinho</strong>. Ele descobre a WLC através de requisições na rede, registra-se nela e baixa as configurações de rádio automaticamente.</p>
+    </div>
+
+    <div class="equip-card orange-theme">
+      <div class="equip-card-tag">Serviço de Infraestrutura</div>
+      <h4>Servidor DHCP (Server0)</h4>
+      <p>Distribui endereços IP para os clientes e informa ao LAP o endereço da controladora através do parâmetro <strong>WLC Address</strong> (Opção 43 do DHCP). Sem isso, o LAP não localiza a WLC.</p>
+    </div>
+
+    <div class="equip-card">
+      <div class="equip-card-tag">Comutação Física</div>
+      <h4>Switch Cisco Catalyst 2960</h4>
+      <p>Interconecta todos os elementos cabeados (Server0, WLC e LAP) na Camada 2 do Modelo OSI (VLAN 1 nativa), garantindo a comutação rápida dos quadros Ethernet.</p>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <div class="callout-title">💡 Vantagem Corporativa Real</div>
+    A centralização na WLC elimina brechas de segurança causadas por APs desatualizados ou desconfigurados e permite balanceamento de carga e roaming contínuo entre setores.
+  </div>
+</div>
+
+<div class="page-section">
+  <div class="section-title">
+    <span>2. Tabela de Endereçamento e Parâmetros</span>
+    <span class="section-badge">Planejamento</span>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Dispositivo</th>
+        <th>Interface</th>
+        <th>Endereço IP</th>
+        <th>Máscara de Sub-rede</th>
+        <th>Método</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Server0</strong> (Servidor)</td>
+        <td>FastEthernet0</td>
+        <td><code>192.168.0.10</code></td>
+        <td><code>255.255.255.0</code></td>
+        <td>Estático</td>
+      </tr>
+      <tr>
+        <td><strong>WLC-PT</strong> (Controladora)</td>
+        <td>Management</td>
+        <td><code>192.168.0.20</code></td>
+        <td><code>255.255.255.0</code></td>
+        <td>Estático</td>
+      </tr>
+      <tr>
+        <td><strong>LAP-PT</strong> (Access Point)</td>
+        <td>Gigabit/FastEthernet</td>
+        <td><code>192.168.0.100</code></td>
+        <td><code>255.255.255.0</code></td>
+        <td>Dinâmico (DHCP)</td>
+      </tr>
+      <tr>
+        <td><strong>PC0</strong> (Cliente Wi-Fi)</td>
+        <td>Wireless0 (WMP300N)</td>
+        <td><code>192.168.0.100</code></td>
+        <td><code>255.255.255.0</code></td>
+        <td>Dinâmico (DHCP)</td>
+      </tr>
+      <tr>
+        <td><strong>PC1</strong> (Cliente Wi-Fi)</td>
+        <td>Wireless0 (WMP300N)</td>
+        <td><code>192.168.0.101</code></td>
+        <td><code>255.255.255.0</code></td>
+        <td>Dinâmico (DHCP)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Parâmetro da Rede Sem Fio</th>
+        <th>Valor Configurado</th>
+        <th>Finalidade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>SSID (Nome da Rede)</strong></td>
+        <td><code>RedeAlunos</code></td>
+        <td>Nome visível para os dispositivos clientes</td>
+      </tr>
+      <tr>
+        <td><strong>Autenticação & Criptografia</strong></td>
+        <td><code>WPA2-PSK (AES)</code></td>
+        <td>Padrão de segurança corporativo robusto</td>
+      </tr>
+      <tr>
+        <td><strong>Chave Pré-compartilhada (Senha)</strong></td>
+        <td><code>12345678</code></td>
+        <td>Senha de conexão para os alunos</td>
+      </tr>
+      <tr>
+        <td><strong>VLAN ID</strong></td>
+        <td><code>1</code></td>
+        <td>VLAN padrão de dados</td>
+      </tr>
+      <tr class="highlight-row">
+        <td><strong>WLC Address (no DHCP)</strong></td>
+        <td><code>192.168.0.20</code></td>
+        <td>Apontador para o LAP encontrar a controladora</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SEÇÃO 3: ROTEIRO PRÁTICO - PASSOS 1 A 3 (PÁGINA 3)
+     ══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+
+<div class="page-section">
+  <div class="section-title">
+    <span>3. Roteiro de Laboratório: Montagem e Camada Física</span>
+    <span class="section-badge">Passos 1 e 2</span>
+  </div>
+
+  <div class="step-box">
+    <div class="step-box-header">
+      <div class="step-number">1</div>
+      <div class="step-box-title">Inserção dos Dispositivos na Topologia</div>
+    </div>
+    <p>Abra um novo arquivo em branco no Packet Tracer e insira os equipamentos no espaço de trabalho sem conectá-los por cabos inicialmente:</p>
+    <ul>
+      <li>1× <strong>Switch 2960</strong> (<em>Network Devices &gt; Switches</em>)</li>
+      <li>1× <strong>WLC-PT</strong> (<em>Network Devices &gt; Wireless Devices</em>)</li>
+      <li>1× <strong>LAP-PT</strong> (<em>Network Devices &gt; Wireless Devices</em>)</li>
+      <li>1× <strong>Server-PT</strong> (<em>End Devices &gt; End Devices</em>)</li>
+      <li>2× <strong>PC-PT</strong> (<em>End Devices &gt; End Devices</em>)</li>
+    </ul>
+    
+    <div class="step-figure">
+      <img src="assets/media_1789132343540.png" alt="Topologia inicial">
+      <div class="step-figcaption">Figura 1: Equipamentos dispostos na tela antes das conexões físicas.</div>
+    </div>
+  </div>
+
+  <div class="step-box">
+    <div class="step-box-header">
+      <div class="step-number">2</div>
+      <div class="step-box-title">Conexões Cabeadas, Alimentação do LAP e Placas Wi-Fi</div>
+    </div>
+    <p><strong>2.1 Cabos:</strong> Usando o cabo <em>Copper Straight-Through</em> (cabo sólido preto), conecte ao Switch0:</p>
+    <ul>
+      <li><code>Server0 (Fa0)</code> &rarr; <code>Switch0</code></li>
+      <li><code>WLC-PT (Gig1)</code> &rarr; <code>Switch0</code></li>
+      <li><code>LAP-PT (Fa0)</code> &rarr; <code>Switch0</code></li>
+      <li>⚠️ <em>Os PCs não recebem cabo, pois serão clientes sem fio!</em></li>
+    </ul>
+
+    <p><strong>2.2 Ligando o LAP:</strong> O LAP-PT vem <strong>desligado por padrão</strong> no Packet Tracer. Clique no LAP &rarr; aba <em>Physical</em> &rarr; arraste a fonte de alimentação preta do canto inferior direito para o conector redondo.</p>
+
+    <div class="step-figure">
+      <img src="assets/media_1789132538329.png" alt="Fonte do LAP">
+      <div class="step-figcaption">Figura 2: Fonte de alimentação conectada ao conector do LAP-PT.</div>
+    </div>
+
+    <p><strong>2.3 Placa Wi-Fi nos PCs (PC0 e PC1):</strong> Clique no PC &rarr; aba <em>Physical</em> &rarr; desligue no botão vermelho &rarr; remova a placa cabeada arrastando para a lista &rarr; insira o módulo <strong>WMP300N</strong> &rarr; religue o computador.</p>
+
+    <div class="step-figure">
+      <img src="assets/media_1789132597214.png" alt="Módulo WMP300N">
+      <div class="step-figcaption">Figura 3: PC com placa wireless WMP300N com antena instalada.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SEÇÃO 4: CONFIGURAÇÃO DE IPs, DHCP E WLAN (PÁGINA 4)
+     ══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+
+<div class="page-section">
+  <div class="section-title">
+    <span>4. Configuração Lógica: IPs, DHCP e Criação do Wi-Fi</span>
+    <span class="section-badge">Passos 3, 4 e 5</span>
+  </div>
+
+  <div class="step-box">
+    <div class="step-box-header">
+      <div class="step-number">3</div>
+      <div class="step-box-title">Endereçamento IP Estático da Infraestrutura</div>
+    </div>
+    <p><strong>3.1 Servidor:</strong> Clique em <code>Server0</code> &rarr; <em>Config &gt; FastEthernet0</em> &rarr; IP: <code>192.168.0.10</code> / Máscara: <code>255.255.255.0</code>.</p>
+    <p><strong>3.2 Controladora:</strong> Clique em <code>WLC-PT</code> &rarr; <em>Config &gt; Management</em> &rarr; IP: <code>192.168.0.20</code> / Máscara: <code>255.255.255.0</code>.</p>
+    
+    <div class="step-figure">
+      <img src="assets/media_1789132771564.png" alt="IP do Servidor">
+      <div class="step-figcaption">Figura 4: Configuração estática da interface FastEthernet0 do Servidor.</div>
+    </div>
+  </div>
+
+  <div class="step-box">
+    <div class="step-box-header">
+      <div class="step-number">4</div>
+      <div class="step-box-title">Configuração do Serviço DHCP com WLC Address</div>
+    </div>
+    <p>No <code>Server0</code> &rarr; aba <strong>Services</strong> &rarr; clique em <strong>DHCP</strong>:</p>
+    <ol>
+      <li>Marque o serviço como <strong>On</strong>.</li>
+      <li>Start IP Address: <code>192.168.0.100</code> | Subnet Mask: <code>255.255.255.0</code>.</li>
+      <li><strong>WLC Address:</strong> <code>192.168.0.20</code> (campo vital para o registro do LAP).</li>
+      <li>Clique em <strong>Save</strong>.</li>
+    </ol>
+
+    <div class="step-figure">
+      <img src="assets/media_1789133173409.png" alt="DHCP Server">
+      <div class="step-figcaption">Figura 5: Painel DHCP do Servidor com apontamento para a WLC (192.168.0.20).</div>
+    </div>
+  </div>
+
+  <div class="step-box">
+    <div class="step-box-header">
+      <div class="step-number">5</div>
+      <div class="step-box-title">Criação da WLAN na Controladora (WLC)</div>
+    </div>
+    <p>Na <code>WLC-PT</code> &rarr; aba <strong>Config</strong> &rarr; <strong>Wireless LANs</strong>:</p>
+    <ul>
+      <li><strong>Profile Name:</strong> <code>RedeAlunos</code> | <strong>SSID:</strong> <code>RedeAlunos</code></li>
+      <li><strong>VLAN:</strong> <code>1</code> | <strong>Authentication:</strong> <code>WPA2-PSK</code></li>
+      <li><strong>PSK Pass Phrase:</strong> <code>12345678</code> &rarr; Clique em <strong>Save</strong>.</li>
+    </ul>
+
+    <div class="step-figure">
+      <img src="assets/media_1789133695187.png" alt="WLAN na WLC">
+      <div class="step-figcaption">Figura 6: WLAN configurada na WLC para distribuição automática ao LAP.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SEÇÃO 5: ASSOCIAÇÃO, TESTES E TROUBLESHOOTING (PÁGINA 5)
+     ══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+
+<div class="page-section">
+  <div class="section-title">
+    <span>5. Associação dos Clientes e Teste de Ping</span>
+    <span class="section-badge">Passos 6 e 7</span>
+  </div>
+
+  <div class="step-box">
+    <div class="step-box-header">
+      <div class="step-number">6</div>
+      <div class="step-box-title">Sincronização e Conexão dos PCs ao Wi-Fi</div>
+    </div>
+    <p>Acelere o tempo no Packet Tracer clicando 2 a 3 vezes no botão <strong>Fast Forward Time (<code>&gt;&gt;</code>)</strong> na barra inferior.</p>
+    <p>No <strong>PC0</strong> &rarr; <em>Desktop &gt; PC Wireless</em> &rarr; aba <strong>Connect</strong> &rarr; <em>Refresh</em> &rarr; selecione <code>RedeAlunos</code> &rarr; clique em <strong>Connect</strong> &rarr; digite <code>12345678</code> &rarr; confirme.</p>
+    
+    <div class="step-figure">
+      <img src="assets/media_1789133899736.png" alt="Tela de senha">
+      <div class="step-figcaption">Figura 7: Autenticação WPA2-PSK com senha digitada no cliente sem fio.</div>
+    </div>
+
+    <p>Repita o mesmo procedimento no <strong>PC1</strong>.</p>
+  </div>
+
+  <div class="step-box">
+    <div class="step-box-header">
+      <div class="step-number">7</div>
+      <div class="step-box-title">Validação de Conectividade e Ping</div>
+    </div>
+    <p><strong>7.1 Confirmar IP:</strong> No PC0, acesse <em>Desktop &gt; IP Configuration</em> e confirme que recebeu <code>192.168.0.100</code> via DHCP.</p>
+    <p><strong>7.2 Teste de Ping:</strong> No PC0, acesse <em>Desktop &gt; Command Prompt</em> e execute:</p>
+    <p style="background:var(--blue-dark);color:#fff;padding:0.5rem 0.8rem;border-radius:6px;font-family:var(--font-mono);font-size:9pt;">
+      ping 192.168.0.101
+    </p>
+    <p>O retorno de <code>Reply from 192.168.0.101: bytes=32 time=...</code> confirma que a rede está 100% operacional!</p>
+
+    <div class="step-figure">
+      <img src="assets/media_1789134324838.png" alt="Topologia final">
+      <div class="step-figcaption">Figura 8: Topologia final concluída com as ondas tracejadas indicando o Wi-Fi ativo.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SEÇÃO 6: CHECKLIST E AUTOAVALIAÇÃO (PÁGINA 6)
+     ══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+
+<div class="page-section">
+  <div class="section-title">
+    <span>6. Checklist de Validação de Laboratório</span>
+    <span class="section-badge">Prática</span>
+  </div>
+
+  <p>Marque à caneta cada item após validar a configuração na sua bancada do Packet Tracer:</p>
+
+  <table class="checklist-table">
+    <tbody>
+      <tr>
+        <td><span class="chk-box"></span> <strong>1. Alimentação do LAP:</strong> Fonte de energia preta conectada na aba <em>Physical</em> do LAP-PT?</td>
+      </tr>
+      <tr>
+        <td><span class="chk-box"></span> <strong>2. Placas Wi-Fi:</strong> Módulos WMP300N inseridos no PC0 e PC1 (e computadores religados)?</td>
+      </tr>
+      <tr>
+        <td><span class="chk-box"></span> <strong>3. Cabeamento:</strong> Cabos de par trançado interligando Server0, WLC-PT e LAP-PT ao Switch?</td>
+      </tr>
+      <tr>
+        <td><span class="chk-box"></span> <strong>4. IP do Servidor:</strong> Configurado com IP estático <code>192.168.0.10</code> e máscara <code>255.255.255.0</code>?</td>
+      </tr>
+      <tr>
+        <td><span class="chk-box"></span> <strong>5. IP da WLC:</strong> Interface Management configurada estaticamente em <code>192.168.0.20</code>?</td>
+      </tr>
+      <tr>
+        <td><span class="chk-box"></span> <strong>6. Serviço DHCP:</strong> Marcado como <em>On</em> e com o campo <strong>WLC Address = 192.168.0.20</strong> salvo?</td>
+      </tr>
+      <tr>
+        <td><span class="chk-box"></span> <strong>7. Criação da WLAN:</strong> SSID <code>RedeAlunos</code> com segurança WPA2-PSK e senha <code>12345678</code> salva?</td>
+      </tr>
+      <tr>
+        <td><span class="chk-box"></span> <strong>8. Sincronização:</strong> Botão <em>Fast Forward Time</em> acionado até o LAP emitir o sinal Wi-Fi?</td>
+      </tr>
+      <tr>
+        <td><span class="chk-box"></span> <strong>9. Conexão Wi-Fi:</strong> PC0 e PC1 associados com adaptador em status <em>Active</em>?</td>
+      </tr>
+      <tr>
+        <td><span class="chk-box"></span> <strong>10. Ping Bem-sucedido:</strong> Disparado <code>ping 192.168.0.101</code> a partir do PC0 com 100% de resposta?</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="page-section">
+  <div class="section-title">
+    <span>7. Mini-Quiz de Fixação Conceitual</span>
+    <span class="section-badge">Autoavaliação</span>
+  </div>
+
+  <div class="quiz-box">
+    <div class="quiz-q">1. Qual a diferença fundamental entre um Access Point autônomo e um LAP (Lightweight AP)?</div>
+    <p>O AP autônomo processa todas as funções de rádio e políticas localmente. O LAP depende 100% de uma controladora (WLC) para obter suas diretrizes de segurança, VLANs e SSIDs.</p>
+    <div class="quiz-answer">Gabarito: Arquitetura centralizada vs autônoma.</div>
+  </div>
+
+  <div class="quiz-box">
+    <div class="quiz-q">2. Se o campo "WLC Address" não for preenchido no servidor DHCP, qual será o sintoma?</div>
+    <p>O LAP receberá um IP comum na rede, mas não saberá onde a WLC está. Consequentemente, não baixará a WLAN e não transmitirá nenhum sinal de Wi-Fi para os clientes.</p>
+    <div class="quiz-answer">Gabarito: LAP fica mudo sem emitir sinal de rede.</div>
+  </div>
+
+  <div class="quiz-box">
+    <div class="quiz-q">3. Por que o PC0 recebe o IP 169.254.x.x se a rede Wi-Fi não estiver totalmente sincronizada?</div>
+    <p>O endereço 169.254.x.x é gerado pelo mecanismo APIPA do sistema quando o cliente solicita um endereço via DHCP e não obtém resposta do servidor dentro do tempo limite.</p>
+    <div class="quiz-answer">Gabarito: Falha de concessão DHCP (APIPA).</div>
+  </div>
+</div>
+
+<div style="text-align:center;margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);font-size:8pt;color:var(--text-muted);">
+  Apostila desenvolvida por <strong>Prof. Romulo Cesar</strong> • IFCE / Redes Cuca • Material sob licença educacional aberta.
+</div>
+
+</body>
+</html>
